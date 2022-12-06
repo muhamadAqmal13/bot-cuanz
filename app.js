@@ -13,12 +13,12 @@ import randomatic from "randomatic";
         return
     }
 
-    const dataFake = await getDataFake()
-
+    
     createLog('START', 'yellow')
     let i = 0
     while(i < 10){
         try {
+            const dataFake = await getDataFake()
             console.log()
             createLog(`Start ke ${i + 1}`, 'yellow')
             let mobile_phone = readlineSync.question('Masukkan no hp : (Contoh: 891234567891) ')
@@ -37,6 +37,7 @@ import randomatic from "randomatic";
             }
             createLog(`Success get OTP`)
 
+            console.log()
             const otp = readlineSync.question('Masukkan OTP : ')
             const validate = await validateOtp(mobile_phone, otp)
             if(validate.code !== 'OK'){
@@ -45,7 +46,7 @@ import randomatic from "randomatic";
                 continue;
             }
             createLog(`OTP Valid`)
-
+            console.log()
             // console.log()
             // createLog(`Process Auth Token`)
             // const authToken = await getToken(validate.data.firebase_access_token)
@@ -57,7 +58,7 @@ import randomatic from "randomatic";
             // createLog(`Success auth Token`)
 
             const username = `${randomatic('Aa', 2)}${dataFake.username}${randomatic(`a0`, 2)}`
-            createLog(`Username : ${username}`)
+            createLog(`Username yang digunakan : ${username}`)
             console.log()
             createLog(`Process Cek Username`)
             const check = await checkUsername(validate.data.access_token, username)
