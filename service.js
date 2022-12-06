@@ -130,7 +130,7 @@ const saveRefferal = (auth, referral_code) => new Promise((resolve, reject) => {
 });
 
 const getDataFake = () => new Promise((resolve, reject) => {
-    fetch(`https://api.namefake.com/indonesian-indonesia`, {
+    fetch(`https://randomuser.me/api/`, {
         method: "GET"
     })
     .then(res => res.json())

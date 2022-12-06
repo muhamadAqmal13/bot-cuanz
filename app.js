@@ -18,9 +18,12 @@ import randomatic from "randomatic";
     let i = 0
     while(i < 10){
         try {
-            const dataFake = await getDataFake()
             console.log()
             createLog(`Start ke ${i + 1}`, 'yellow')
+            const {results} = await getDataFake()
+            const username = `${results[0].login.username}${randomatic(`Aa0`, 3)}`
+            createLog(`Username yang digunakan : ${username}`)
+            console.log()
             let mobile_phone = readlineSync.question('Masukkan no hp : (Contoh: 891234567891) ')
             if(!mobile_phone || isNaN(mobile_phone * 1)){
                 createLog(`No Hp tidak valid`, 'red')
@@ -57,8 +60,6 @@ import randomatic from "randomatic";
             // }
             // createLog(`Success auth Token`)
 
-            const username = `${randomatic('Aa', 2)}${dataFake.username}${randomatic(`a0`, 2)}`
-            createLog(`Username yang digunakan : ${username}`)
             console.log()
             createLog(`Process Cek Username`)
             const check = await checkUsername(validate.data.access_token, username)
